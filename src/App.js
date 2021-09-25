@@ -1,5 +1,5 @@
 import './App.css';
-import NewTodo from './newTodo';
+import TodoList from './todoList';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
           <img src="" alt="" />
         </div>
       </header>
-      <NewTodo></NewTodo>
+      <TodoList></TodoList>
     </div>
   );
 }
