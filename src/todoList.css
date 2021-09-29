@@ -25,7 +25,7 @@
     position: relative;
 }
 
-/* .task:nth-last-child(1) {
+/* .task:nth-last-child() {
     border-bottom: none;
 } */
 
@@ -40,7 +40,7 @@
     margin-top: 2.6em;
 }
 
-.check {
+.checkbox {
     content: '';
     width: 20px;
     height: 20px;
@@ -91,7 +91,21 @@
     border: none;
 }
 
-.list .completed {
+.list input[type=checkbox] {
+    display: none;
+}
+
+.list input[type=checkbox]:checked ~ .lbl-value {
+    color: var(--VeryDarkGrayishBlue2);
+    text-decoration: line-through;
+}
+
+.list input[type=checkbox]:checked ~ .lbl-checkbox {
+    background: url('images/icon-check.svg') no-repeat, var(--CheckBackground);
+    background-position: center;
+}
+
+/* .list .completed {
     color: var(--VeryDarkGrayishBlue2);
     text-decoration: line-through;
     text-decoration-color: var(--DarkGrayishBlue);
@@ -99,7 +113,7 @@
 .list .completed .check {
     background: url('images/icon-check.svg') no-repeat, var(--CheckBackground);
     background-position: center;
-}
+} */
 
 .filters {
     display: flex;
@@ -121,6 +135,11 @@
 
 .filters input {
     display: none;
+}
+
+.filters label:hover {
+    color: var(--VeryLightGray);
+    cursor: pointer;
 }
 
 /* .filters input+label {
