@@ -84,6 +84,10 @@
     color: var(--VeryDarkGrayishBlue2);
 }
 
+.items-left {
+    cursor: default;
+}
+
 .bottom-panel button {
     color: var(--VeryDarkGrayishBlue2);
     font-size: 0.65rem;
@@ -149,4 +153,12 @@
 
 .filters input:checked+label {
     color: var(--BrightBlue);
+}
+
+.btn-clear-completed {
+    cursor: pointer;
+}
+
+.btn-clear-completed:hover {
+    color: var(--VeryLightGray);
 }

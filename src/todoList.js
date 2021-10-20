@@ -8,7 +8,8 @@ export default class TodoList extends Component {
         this.state = {
             userInput: '',
             list: [],
-            doneTasks: []
+            doneTasks: [],
+            filter: 'All'
         }
     }
 
@@ -78,6 +79,12 @@ export default class TodoList extends Component {
         }
     }
 
+    setFilter(val) {
+        this.setState({
+            filter: val
+        })
+    }
+
     render() {
         return (
             <>
@@ -94,7 +101,8 @@ export default class TodoList extends Component {
 
                 <div className="list">
                     <ul>
-                        {this.state.list.map((val, i) => {
+                        {this.state.list.map((val, i) => 
+                            (this.state.filter === 'All' || (this.state.filter === 'Active' && !this.state.doneTasks[i]) || (this.state.filter === 'Completed' && this.state.doneTasks[i])) && 
                             <li key={i}>
                                 <div className="task">
                                     <input type="checkbox" name="check" id={'check-' + i} className='checkbox' onChange={() => this.toggleCheckbox(i)} checked={this.state.doneTasks[i]} />
@@ -103,7 +111,7 @@ export default class TodoList extends Component {
                                     <div className="close" onClick={e => this.deleteHandler(i)}></div>
                                 </div>
                             </li>
-                        }
+                            
                         )}
                     </ul>
                 </div>
@@ -111,11 +119,11 @@ export default class TodoList extends Component {
 
                 <div className="filters">
                     <div className='items-left'>{this.tasksLeft()} items left</div>
-                    <input type='radio' name='filter' id='All' className='all' value='All' defaultChecked />
+                    <input type='radio' name='filter' id='All' className='all' value='All' onClick={e => this.setFilter('All')}  defaultChecked />
                     <label htmlFor="All">All</label>
-                    <input type='radio' name='filter' id='Active' className='active' value='Active' />
+                    <input type='radio' name='filter' id='Active' className='active' value='Active' onClick={e => this.setFilter('Active')} />
                     <label htmlFor="Active">Active</label>
-                    <input type='radio' name='filter' id='Completed' className='completed' value='Completed' />
+                    <input type='radio' name='filter' id='Completed' className='completed' value='Completed' onClick={e => this.setFilter('Completed')}  />
                     <label htmlFor="Completed">Completed</label>
                     <div className='btn-clear-completed' onClick={() => this.clearCompleted()}>Clear Completed</div>
                 </div>
